@@ -12,7 +12,6 @@ import com.skilldistillery.filmquery.entities.Actor;
 import com.skilldistillery.filmquery.entities.Film;
 
 public class DatabaseAccessorObject implements DatabaseAccessor {
-
 	private static final String URL = "jdbc:mysql://localhost:3306/sdvid?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=US/Central";
 	static {
 		try {
@@ -22,6 +21,12 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			e.printStackTrace();
 		}
 	}
+
+	public static void main(String[] args) throws SQLException {
+		DatabaseAccessorObject dao = new DatabaseAccessorObject();
+		System.out.println(dao.findFilmsBySearchWord("bu"));
+	}
+
 	String user = "student";
 	String pwd = "student";
 
@@ -49,7 +54,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			// film.setLength(filmResult.getInt("length"));
 			// film.setReplacementCost(filmResult.getDouble("replacement_cost"));
 			// film.setSpecialFeatures(filmResult.getString("special_features"));
-			film.setName(filmResult.getString("language.name"));
+			film.setLanguage(filmResult.getString("language.name"));
 		}
 		filmResult.close();
 		stmt.close();
@@ -96,7 +101,49 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			Actor actor = new Actor(id, firstName, lastName);
 			actors.add(actor);
 		}
+		rs.close();
+		stmt.close();
+		conn.close();
 		return actors;
+	}
+
+	public List<Integer> filmIdNumberSearch(String parameter) throws SQLException {
+		List<Integer> filmIdNumber = new ArrayList<Integer>();
+		Connection conn = DriverManager.getConnection(URL, user, pwd);
+		String sql = "SELECT film.id FROM film " + "WHERE film.title LIKE ? OR film.description LIKE ? ";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+
+		stmt.setString(1, "%" + parameter + "%");
+		stmt.setString(2, "%" + parameter + "%");
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			int filmSearch = rs.getInt("film.id");
+			filmIdNumber.add(filmSearch);
+		}
+		return filmIdNumber;
+	}
+
+	public List<Film> findFilmsBySearchWord(String parameter) throws SQLException {
+		List<Film> filmSearch = new ArrayList<Film>();
+		Connection conn = DriverManager.getConnection(URL, user, pwd);
+		String sql = "SELECT film.id, film.title, film.release_year, film.rating, film.description, language.name FROM film "
+				+ "JOIN language ON film.language_id = language.id WHERE film.title LIKE ? OR film.description LIKE ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+
+		stmt.setString(1, "%" + parameter + "%");
+		stmt.setString(2, "%" + parameter + "%");
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+		int filmSearchId = rs.getInt("film.id");
+			String title = rs.getString("film.title");
+			short releaseYear = rs.getShort("film.release_year");
+			String rating = rs.getString("film.rating");
+			String description = rs.getString("film.description");
+			String language = rs.getString("language.name");
+			Film filmS = new Film(filmSearchId, title, releaseYear, rating, description, language);
+			filmSearch.add(filmS);
+		}
+		return filmSearch;
 	}
 
 }

@@ -14,9 +14,15 @@ public class Film {
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
-	private String name;
+	private String language;
+	
 	public Film() {
 	}
+	
+	public Film(int id) {
+		this.id = id;
+	}
+
 
 	public Film(int id, String title, String description, short releaseYear, int languageId, int rentalDuration,
 			double rentalRate, int length, double replacementCost, String rating, String specialFeatures, String name) {
@@ -31,7 +37,26 @@ public class Film {
 		this.replacementCost = replacementCost;
 		this.rating = rating;
 		this.specialFeatures = specialFeatures;
-		this.name = name; 
+	}
+
+	public Film(int filmSearchId, String title2, short releaseYear2, String rating2, String description2, String language) {
+		// TODO Auto-generated constructor stub
+		this.id = filmSearchId;
+		this.title = title2;
+		this.releaseYear = releaseYear2;
+		this.rating = rating2;
+		this.description = description2;
+		this.language = language;
+	}
+
+
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 
 	public int getId() {
@@ -122,18 +147,12 @@ public class Film {
 	public void setSpecialFeatures(String specialFeatures) {
 		this.specialFeatures = specialFeatures;
 	}
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
+
 
 	@Override
 	public String toString() {
-		return "Title: " + title + ", Release Year: " + releaseYear +", Rate: " + rating + 
-				", Description: " + description + ", Language: " + name;
+		return "Title: " + title + ", Release Year: " + releaseYear +", Rated: " + rating + 
+				", Description: " + description + ", Language: " + language;
 	}
 
 	@Override
