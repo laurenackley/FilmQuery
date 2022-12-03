@@ -19,9 +19,7 @@ public class Film {
 	public Film() {
 	}
 	
-	public Film(int id) {
-		this.id = id;
-	}
+
 
 
 	public Film(int id, String title, String description, short releaseYear, int languageId, int rentalDuration,
@@ -40,7 +38,6 @@ public class Film {
 	}
 
 	public Film(int filmSearchId, String title2, short releaseYear2, String rating2, String description2, String language) {
-		// TODO Auto-generated constructor stub
 		this.id = filmSearchId;
 		this.title = title2;
 		this.releaseYear = releaseYear2;

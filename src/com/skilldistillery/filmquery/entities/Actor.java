@@ -8,8 +8,9 @@ public class Actor {
 	private String firstName;
 	private String lastName;
 	private List<Actor> actors;
-	
-	public Actor() {	}
+
+	public Actor() {
+	}
 
 	public Actor(int id, String fn, String ln) {
 		this.id = id;
@@ -23,11 +24,10 @@ public class Actor {
 		this.lastName = lastName;
 		this.actors = actors;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
-
 
 	public void setId(int id) {
 		this.id = id;
@@ -48,7 +48,7 @@ public class Actor {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
 	public List<Actor> getActors() {
 		return actors;
 	}
@@ -59,9 +59,9 @@ public class Actor {
 
 	@Override
 	public String toString() {
-		return firstName +" "+ lastName + "";
+		return firstName + " " + lastName + "";
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -78,5 +78,5 @@ public class Actor {
 		Actor other = (Actor) obj;
 		return id == other.id;
 	}
-	
+
 }

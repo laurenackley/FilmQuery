@@ -17,14 +17,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	public static void main(String[] args) throws SQLException {
-		DatabaseAccessorObject dao = new DatabaseAccessorObject();
-		System.out.println(dao.findFilmsBySearchWord("bu"));
 	}
 
 	String user = "student";
@@ -41,8 +35,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		stmt.setInt(1, filmId);
 		ResultSet filmResult = stmt.executeQuery();
 		if (filmResult.next()) {
-			film = new Film(); // Create the object
-			// Here is our mapping of query columns to our object fields:
+			film = new Film(); 
 			// film.setId(filmResult.getInt("id"));
 			film.setTitle(filmResult.getString("film.title"));
 			film.setReleaseYear(filmResult.getShort("film.release_year"));
@@ -73,8 +66,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		stmt.setInt(1, actorId);
 		ResultSet actorResult = stmt.executeQuery();
 		if (actorResult.next()) {
-			actor = new Actor(); // Create the object
-			// Here is our mapping of query columns to our object fields:
+			actor = new Actor();
 			actor.setId(actorResult.getInt("id"));
 			actor.setFirstName(actorResult.getString("first_name"));
 			actor.setLastName(actorResult.getString("last_name"));
@@ -107,22 +99,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		return actors;
 	}
 
-	public List<Integer> filmIdNumberSearch(String parameter) throws SQLException {
-		List<Integer> filmIdNumber = new ArrayList<Integer>();
-		Connection conn = DriverManager.getConnection(URL, user, pwd);
-		String sql = "SELECT film.id FROM film " + "WHERE film.title LIKE ? OR film.description LIKE ? ";
-		PreparedStatement stmt = conn.prepareStatement(sql);
-
-		stmt.setString(1, "%" + parameter + "%");
-		stmt.setString(2, "%" + parameter + "%");
-		ResultSet rs = stmt.executeQuery();
-		while (rs.next()) {
-			int filmSearch = rs.getInt("film.id");
-			filmIdNumber.add(filmSearch);
-		}
-		return filmIdNumber;
-	}
-
 	public List<Film> findFilmsBySearchWord(String parameter) throws SQLException {
 		List<Film> filmSearch = new ArrayList<Film>();
 		Connection conn = DriverManager.getConnection(URL, user, pwd);
@@ -134,7 +110,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		stmt.setString(2, "%" + parameter + "%");
 		ResultSet rs = stmt.executeQuery();
 		while (rs.next()) {
-		int filmSearchId = rs.getInt("film.id");
+			int filmSearchId = rs.getInt("film.id");
 			String title = rs.getString("film.title");
 			short releaseYear = rs.getShort("film.release_year");
 			String rating = rs.getString("film.rating");
