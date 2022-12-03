@@ -5,159 +5,141 @@ import java.util.Objects;
 public class Film {
 	private int id;
 	private String title;
-	private String desc;
+	private String description;
 	private short releaseYear;
-	private int langId;
-	private int rentDur;
-	private double rate;
+	private int languageId;
+	private int rentalDuration;
+	private double rentalRate;
 	private int length;
-	private double repCost;
+	private double replacementCost;
 	private String rating;
-	private String features;
-	
-	
-	public Film() {}
-	
-	public Film(int id, String title, String desc, short releaseYear, int langId, int rentDur, double rate,
-			int length, double repCost, String rating, String features) {
-		this.id = id;
-		this.title = title;
-		this.desc = desc;
-		this.releaseYear = releaseYear;
-		this.langId = langId;
-		this.rentDur = rentDur;
-		this.rate = rate;
-		this.length = length;
-		this.repCost = repCost;
-		this.rating = rating;
-		this.features = features;
-	
+	private String specialFeatures;
+	private String name;
+	public Film() {
 	}
 
+	public Film(int id, String title, String description, short releaseYear, int languageId, int rentalDuration,
+			double rentalRate, int length, double replacementCost, String rating, String specialFeatures, String name) {
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.releaseYear = releaseYear;
+		this.languageId = languageId;
+		this.rentalDuration = rentalDuration;
+		this.rentalRate = rentalRate;
+		this.length = length;
+		this.replacementCost = replacementCost;
+		this.rating = rating;
+		this.specialFeatures = specialFeatures;
+		this.name = name; 
+	}
 
 	public int getId() {
 		return id;
 	}
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public String getTitle() {
 		return title;
 	}
 
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
-
-	public String getDesc() {
-		return desc;
+	public String getDescription() {
+		return description;
 	}
 
-
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-
 
 	public short getReleaseYear() {
 		return releaseYear;
 	}
 
-
 	public void setReleaseYear(short releaseYear) {
 		this.releaseYear = releaseYear;
 	}
 
-
-	public int getLangId() {
-		return langId;
+	public int getLanguageId() {
+		return languageId;
 	}
 
 
-	public void setLangId(int langId) {
-		this.langId = langId;
+	public void setLanguageId(int languageId) {
+		this.languageId = languageId;
 	}
 
-
-	public int getRentDur() {
-		return rentDur;
+	public int getRentalDuration() {
+		return rentalDuration;
 	}
 
-
-	public void setRentDur(int rentDur) {
-		this.rentDur = rentDur;
+	public void setRentalDuration(int rentalDuration) {
+		this.rentalDuration = rentalDuration;
 	}
 
-
-	public double getRate() {
-		return rate;
+	public double getRentalRate() {
+		return rentalRate;
 	}
 
-
-	public void setRate(double rate) {
-		this.rate = rate;
+	public void setRentalRate(double rentalRate) {
+		this.rentalRate = rentalRate;
 	}
-
 
 	public int getLength() {
 		return length;
 	}
 
-
 	public void setLength(int length) {
 		this.length = length;
 	}
 
-
-	public double getRepCost() {
-		return repCost;
+	public double getReplacementCost() {
+		return replacementCost;
 	}
 
-
-	public void setRepCost(double repCost) {
-		this.repCost = repCost;
+	public void setReplacementCost(double replacementCost) {
+		this.replacementCost = replacementCost;
 	}
-
 
 	public String getRating() {
 		return rating;
 	}
 
-
 	public void setRating(String rating) {
 		this.rating = rating;
 	}
 
-
-	public String getFeatures() {
-		return features;
+	public String getSpecialFeatures() {
+		return specialFeatures;
 	}
 
-
-	public void setFeatures(String features) {
-		this.features = features;
+	public void setSpecialFeatures(String specialFeatures) {
+		this.specialFeatures = specialFeatures;
 	}
-
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	@Override
 	public String toString() {
-		return "Film: " + id + ", Title:" + title + ", Description: " + desc + ", Release Year:" + releaseYear
-				+ ", LanguageID:" + langId + ", Rent Duration" + rentDur + ", Rate:" + rate + ", Length:" + length + ", Rep Cost:"
-				+ repCost + ", Rating:" + rating + ", Features: " + features;
+		return "Title: " + title + ", Release Year: " + releaseYear +", Rate: " + rating + 
+				", Description: " + description + ", Language: " + name;
 	}
-
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -170,5 +152,5 @@ public class Film {
 		Film other = (Film) obj;
 		return id == other.id;
 	}
-	
+
 }

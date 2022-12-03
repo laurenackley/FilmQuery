@@ -7,7 +7,7 @@ public class Actor {
 	private int id;
 	private String firstName;
 	private String lastName;
-	private List<Film> films;
+	private List<Actor> actors;
 	
 	public Actor() {	}
 
@@ -17,9 +17,11 @@ public class Actor {
 		this.lastName = ln;
 	}
 
-	public Actor(int id, String firstName, String lastName, List<Film> films) {
-		this(id,firstName,lastName);
-		this.films = films;
+	public Actor(int id, String firstName, String lastName, List<Actor> actors) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.actors = actors;
 	}
 	
 	public int getId() {
@@ -46,21 +48,20 @@ public class Actor {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public List<Film> getFilms() {
-		return films;
-	}
 	
-	public void setFilms(List<Film> films) {
-		this.films = films;
+	public List<Actor> getActors() {
+		return actors;
 	}
 
-	
-	
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
+	}
+
 	@Override
 	public String toString() {
-		return "Actor [id=" + id + ", Name: " + firstName + lastName + "]";
+		return firstName +" "+ lastName + "";
 	}
-
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
