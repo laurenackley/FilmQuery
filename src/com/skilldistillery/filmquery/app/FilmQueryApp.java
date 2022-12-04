@@ -65,12 +65,14 @@ public class FilmQueryApp {
 				+ "                                                                                                                                                                                                                                          \n"
 				+ "");
 		while (keepGoing == true) {
-			System.out.println("************************************************************\n"
-					+ " ~~~~~~~~~~~~~~~~~~~~~~~~~Menu:~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
-					+ "Type \"NUMBER\" to search for a film by number between 1-1000.\n"
-					+ "Type \"KEYWORD\" to search for a title or description by keyword. \n"
-					+ "Type \"QUIT\" to exit.\n" + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
-					+ "***********************************************************");
+			System.out.println(
+					  "******************************************************************\n"
+					+ " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~Menu:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+					+ " Type \"NUMBER\" to search for a film by number between 1-1000.\n"
+					+ " Type \"KEYWORD\" to search for a title or description by keyword. \n"
+					+ " Type \"QUIT\" to exit.\n" 
+					+ " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+					+ "******************************************************************");
 			String response = input.next();
 
 			switch (response.toUpperCase()) {
