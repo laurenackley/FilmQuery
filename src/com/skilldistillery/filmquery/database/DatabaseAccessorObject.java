@@ -119,6 +119,10 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			Film filmS = new Film(filmSearchId, title, releaseYear, rating, description, language);
 			filmSearch.add(filmS);
 		}
+		
+		rs.close();
+		stmt.close();
+		conn.close();
 		return filmSearch;
 	}
 
